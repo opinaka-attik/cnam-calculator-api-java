@@ -1,0 +1,17 @@
+services:
+  api:
+    build: .
+    container_name: java-calculator-api
+    ports:
+      - "8000:8000"
+
+  test:
+    image: maven:3.9.8-eclipse-temurin-17
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - m2:/root/.m2
+    command: mvn test
+
+volumes:
+  m2:
